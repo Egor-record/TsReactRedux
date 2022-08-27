@@ -1,6 +1,6 @@
-import {loginState, userState} from "../../store/types";
+import {loginState, userState} from "../store/types";
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {fetchLoginData} from "../../api/loginAPI";
+import {fetchLoginData} from "../api/loginAPI";
 
 
 const initialState: loginState = {

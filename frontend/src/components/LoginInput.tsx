@@ -1,5 +1,5 @@
 import React from "react";
-import {InputProps} from "../../store/types";
+import {InputProps} from "../store/types";
 
 export default function LoginInput(props : InputProps) {
     return (

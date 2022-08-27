@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {AppDispatch} from "../../store/store";
-import {setActivePostID} from "./postSlice";
+import {AppDispatch} from "../store/store";
+import {setActivePostID} from "../slices/postSlice";
 import {useLocation} from "react-router-dom";
-import {getPostByID} from "./postAPI";
+import {getPostByID} from "../api/postAPI";
 
 export default function Post() {
     const [post, setPost] = useState({

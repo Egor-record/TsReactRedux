@@ -1,4 +1,5 @@
-import {Post, PostResponse} from "../../store/types";
+import {Post, PostResponse} from "../store/types";
+import {checkIfTokenExpired} from "./loginAPI";
 
 export function getPostByID(postID : String) {
     return new Promise<Post>(async (resolve, reject) => {
@@ -8,6 +9,8 @@ export function getPostByID(postID : String) {
                 if (response.status === 200) {
                     resolve(result);
                 } else {
+                    console.log("Here");
+                    checkIfTokenExpired(response.status, result.statusCode)
                     reject()
                 }
             } else {
@@ -28,6 +31,7 @@ export function deletePost(postID : String) {
             if (response.status === 200) {
                 resolve(result);
             } else {
+                checkIfTokenExpired(response.status, result.statusCode)
                 reject()
             }
         }

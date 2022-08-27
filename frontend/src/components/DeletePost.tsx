@@ -1,4 +1,4 @@
-import {AlertBoxProps} from "../../store/types";
+import {AlertBoxProps} from "../store/types";
 
 export default function DeletePost(props : AlertBoxProps) {
     return (

@@ -1,10 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../store/types";
+import {RootState} from "../store/types";
 import DeletePost from "./DeletePost";
-import {AppDispatch} from "../../store/store";
-import {fetchAlert} from "./alertSlice";
-import {deleteOnePost, setActivePostID} from "../post/postSlice";
-import {getAllPosts} from "../feed/feedSlice";
+import {AppDispatch} from "../store/store";
+import {fetchAlert} from "../slices/alertSlice";
+import {deleteOnePost, setActivePostID} from "../slices/postSlice";
+import {getAllPosts} from "../slices/feedSlice";
 
 export default function AlertBox() {
 
@@ -16,7 +16,6 @@ export default function AlertBox() {
         dispatch(deleteOnePost(postState.activePostId))
         dispatch(getAllPosts());
         closeAlert();
-
     }
     const closeAlert = () => {
         dispatch(fetchAlert("none"));
@@ -31,7 +30,7 @@ export default function AlertBox() {
        )
    }
    return (
-       <div/>
+       <></>
    )
 }
 

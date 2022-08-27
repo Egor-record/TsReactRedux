@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {postState, RootState} from "../../store/types";
-import {deletePost, getPostByID} from "../../api/postAPI";
+import {postState} from "../store/types";
+import {deletePost} from "../api/postAPI";
 
 const initialState : postState = {
     activePostId: "",

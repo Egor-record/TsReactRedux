@@ -1,4 +1,5 @@
-import { Post } from "../../store/types";
+import { Post } from "../store/types";
+import {checkIfTokenExpired} from "./loginAPI";
 
 export function getPosts() {
 
@@ -8,6 +9,7 @@ export function getPosts() {
             if (response.status === 200) {
                 resolve(result);
             } else {
+                checkIfTokenExpired(response.status, result.statusCode)
                 reject()
             }
         }

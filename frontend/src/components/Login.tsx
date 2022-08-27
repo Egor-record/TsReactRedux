@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {AppDispatch} from "../../store/store";
+import {AppDispatch} from "../store/store";
 import LoginInput from "./LoginInput";
-import {fetchCreateAccount, sendLogin} from "./loginSlice";
+import {fetchCreateAccount, sendLogin} from "../slices/loginSlice";
+
 
 export default function Login() {
 
@@ -24,7 +25,9 @@ export default function Login() {
             dispatch(sendLogin({
                 name : values.email,
                 password : values.password,
-            }));
+            })).then(()=>{
+                document.location = '/'
+            })
         }
     }
 
@@ -35,7 +38,9 @@ export default function Login() {
                 dispatch(fetchCreateAccount({
                     name : values.email,
                     password : values.password,
-                }));
+                })).then(()=>{
+                    document.location = '/'
+                });
             }
         }
     }

@@ -1,4 +1,5 @@
-import {Post, PostResponse} from "../../store/types";
+import {Post, PostResponse} from "../store/types";
+import {checkIfTokenExpired} from "./loginAPI";
 
 export function sendNewPostData(post : Post) {
     return new Promise<PostResponse>(async (resolve, reject) => {
@@ -17,6 +18,7 @@ export function sendNewPostData(post : Post) {
                     id : result.id
                 });
             } else {
+                checkIfTokenExpired(response.status, result.statusCode)
                 reject()
             }
         }

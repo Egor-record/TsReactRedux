@@ -1,4 +1,4 @@
-import {loginResponse, userState} from "../../store/types";
+import {loginResponse, userState} from "../store/types";
 
 export function fetchLoginData(login : userState, method : string) {
     return new Promise<loginResponse>(async (resolve, reject) => {
@@ -17,8 +17,15 @@ export function fetchLoginData(login : userState, method : string) {
                     user: { name: result.name, password: "" }
                 });
             } else {
+                checkIfTokenExpired(response.status, result.statusCode)
                 reject()
             }
         }
     );
+}
+
+export function checkIfTokenExpired(headerStatus : number, bodyStatusCode : number) {
+    if ( headerStatus === 401 && bodyStatusCode === 100 ) {
+        document.cookie = "lenyablog=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
 }

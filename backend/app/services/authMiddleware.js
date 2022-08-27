@@ -1,19 +1,31 @@
 const jwt = require('jsonwebtoken');
-const secret = "ECE22yj9vfAKqNHR4YBS";
+const config = require('../../config/index');
+const secret = config.secretKey;
 
 module.exports = function(req, res, next) {
-    const token = req.sessionToken;
+    const token = req.cookies?.lenyablog;
     res.setHeader('Content-Type', 'application/json');
+
     if (!token) {
-        res.status(401).send({
+       return res.status(401).send({
             "error": true,
             "message": "Unauthorized: No token provided"});
     } else {
         jwt.verify(token, secret, function(err, decoded) {
             if (err) {
-                res.status(401).send({
-                    "error": true,
-                    "message": 'Unauthorized: Invalid token'});
+                console.log(err);
+                if(err.name === 'TokenExpiredError') {
+                    return res.status(401).send({
+                        "error": true,
+                        "statusCode" : 100,
+                        "message": 'TokenExpiredError: Invalid token'});
+                } else {
+                   return res.status(401).send({
+                        "error": true,
+                        "statusCode" : 401,
+                        "message": 'Unauthorized: Invalid token'});
+                }
+
             } else {
                 req.userId = decoded.userId;
                 next();

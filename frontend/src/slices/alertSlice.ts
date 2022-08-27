@@ -1,4 +1,4 @@
-import {AlertState} from "../../store/types";
+import {AlertState} from "../store/types";
 import {createSlice} from "@reduxjs/toolkit";
 
 
